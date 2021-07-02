@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-fire-66155": {
+      "hosting": {
+        "AngularFirebase": [
+          "angular-fire-66155"
+        ]
+      }
+    }
+  }
+}
