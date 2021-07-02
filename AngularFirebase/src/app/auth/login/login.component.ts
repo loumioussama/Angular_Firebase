@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.initLoginForm();
+
   }
   initLoginForm(): any {
     this.loginForm = new FormGroup({
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm?.get('password');
   }
   login(): void {
+    console.log(this.loginForm?.value)    
     this.authService.login(this.loginForm?.value);
   }
 
