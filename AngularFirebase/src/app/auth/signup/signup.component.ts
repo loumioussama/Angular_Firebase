@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,8 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   signUpForm?: FormGroup;
+  isSignedIn = false
 
-  constructor() { }
+  constructor(public firebaseService : FirebaseService) { }
 
   ngOnInit(): void {
     this.initSignUpForm();
@@ -33,6 +35,16 @@ export class SignupComponent implements OnInit {
   signUp(): void {
     console.log(this.signUpForm?.value)    
     // this.authService.login(this.signUpForm?.value);
+  }
+  async onSignup(){
+    await this.firebaseService.signup(this.signUpForm?.get('email').value,this.signUpForm?.get('email').value)
+    if(this.firebaseService.isLoggedIn)
+    this.isSignedIn = true
+  }
+  async onSignin(email:string,password:string){
+    await this.firebaseService.signin(email,password)
+    if(this.firebaseService.isLoggedIn)
+    this.isSignedIn = true
   }
 
 }
