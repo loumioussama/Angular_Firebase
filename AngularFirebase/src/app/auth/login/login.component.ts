@@ -35,22 +35,27 @@ export class LoginComponent implements OnInit {
   }
 
   async onSignin() {
-    console.log(this.loginForm?.get('email').value);
-    console.log(this.loginForm?.get('password').value);
-    
     await this.firebaseService.signin(this.loginForm?.get('email').value, this.loginForm?.get('password').value)
-    console.log(this.firebaseService);
-    
-    if (this.firebaseService.isLoggedIn)
-      {this.isSignedIn = true
-      console.log("hello");
+    if (this.firebaseService.isLoggedIn) {
+      this.isSignedIn = true
     }
-    else{
+    else {
       console.log("error");
-      
+
     }
-      
+
   }
- 
+  async login() {
+    await this.firebaseService.loginwithGoogle()
+    if (this.firebaseService.isLoggedIn) {
+      this.isSignedIn = true
+    }
+    else {
+      console.log("error");
+
+    }
+
+  }
+
 
 }
