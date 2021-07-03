@@ -13,6 +13,10 @@ export class FirebaseService {
       this.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify(res.user))
     })
+    .catch(err=>{
+        console.log(err);
+        
+    })
   }
   async signup(email: string, password : string){
     await this.firebaseAuth.createUserWithEmailAndPassword(email,password)
@@ -20,7 +24,13 @@ export class FirebaseService {
       this.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify(res.user))
     })
+    .catch(err=>{
+        console.log(err);
+        
+    })
   }
+ 
+
   logout(){
     this.firebaseAuth.signOut()
     localStorage.removeItem('user')

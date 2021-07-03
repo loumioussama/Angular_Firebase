@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   fieldTextType = true;
   loginForm?: FormGroup;
-  constructor(    private authService: AuthService,
-    ) { }
+  isSignedIn = false
+
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
     this.initLoginForm();
@@ -32,9 +33,24 @@ export class LoginComponent implements OnInit {
   get password(): any {
     return this.loginForm?.get('password');
   }
-  login(): void {
-    console.log(this.loginForm?.value)    
-    this.authService.login(this.loginForm?.value);
+
+  async onSignin() {
+    console.log(this.loginForm?.get('email').value);
+    console.log(this.loginForm?.get('password').value);
+    
+    await this.firebaseService.signin(this.loginForm?.get('email').value, this.loginForm?.get('password').value)
+    console.log(this.firebaseService);
+    
+    if (this.firebaseService.isLoggedIn)
+      {this.isSignedIn = true
+      console.log("hello");
+    }
+    else{
+      console.log("error");
+      
+    }
+      
   }
+ 
 
 }
