@@ -34,8 +34,7 @@ import { HomeComponent } from './home/home.component';
       measurementId: "G-D3D52RH281"
     }),
     AngularFirestoreModule,
-    AngularFireAuthModule 
-
+    AngularFireAuthModule,
 
   ],
   providers: [FirebaseService],

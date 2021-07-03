@@ -1,12 +1,15 @@
 .container{
     background-color:#f0f2f7;
 }
-.row{
+.row>*{
+     width: 30% !important;
+
 }
 
 .img{
-   width: 90%;
-   height: 70%;
+   width: 30%;
+   height: 30%;
+   margin-left: 35%;
 }
 .input{
    width: 50%;
@@ -45,4 +48,8 @@
 }
 .col-lg-9{
     width: 100%;
+}
+
+.video{
+// width: 40%;
 }

@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
     await this.firebaseService.loginwithGoogle()
     if (this.firebaseService.isLoggedIn) {
       this.isSignedIn = true
+      this.router.navigate(['/home']);
+
     }
     else {
       console.log("error");
