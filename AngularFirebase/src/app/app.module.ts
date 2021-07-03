@@ -8,6 +8,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FirebaseService} from './services/firebase.service';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,10 @@ import { FirebaseService} from './services/firebase.service';
       appId: "1:132993019422:web:84582adda2e32eb04c880f",
       measurementId: "G-D3D52RH281"
     }),
-    
+    AngularFirestoreModule,
+    AngularFireAuthModule 
+
+
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
