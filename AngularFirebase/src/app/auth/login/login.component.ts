@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm?: FormGroup;
   isSignedIn = false
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService, public router :Router) { }
 
   ngOnInit(): void {
     this.initLoginForm();
@@ -38,6 +39,8 @@ export class LoginComponent implements OnInit {
     await this.firebaseService.signin(this.loginForm?.get('email').value, this.loginForm?.get('password').value)
     if (this.firebaseService.isLoggedIn) {
       this.isSignedIn = true
+      this.router.navigate(['/home']);
+
     }
     else {
       console.log("error");
