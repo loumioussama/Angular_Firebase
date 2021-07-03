@@ -28,7 +28,8 @@ import { FirebaseService} from './services/firebase.service';
       messagingSenderId: "132993019422",
       appId: "1:132993019422:web:84582adda2e32eb04c880f",
       measurementId: "G-D3D52RH281"
-    })
+    }),
+    
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
