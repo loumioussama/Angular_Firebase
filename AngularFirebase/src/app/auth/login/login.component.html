@@ -3,7 +3,7 @@
         <div class="col-lg-6 ">
           <div class="card">
             <div class="center">
-              <form [formGroup]="loginForm!" (ngSubmit)="onSignin()">
+              <form [formGroup]="loginForm" (ngSubmit)="onSignin()">
               <h1>login in to your account</h1>
               <div class="input">
                 <label >Email address</label>
@@ -11,6 +11,13 @@
                 class="form-control" 
                 formControlName="email"
                 required>
+                
+                <mat-error *ngIf="email.hasError('required') && loginForm.controls['email']?.touched">
+                  Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
 
               </div>
               <div class="input">
@@ -19,9 +26,15 @@
                 <input type="password"
                   class="form-control"
                   formControlName="password"
-                  minlength="4"
+                  minlength="8"
                     required
                   >
+                  <mat-error *ngIf="password.hasError('required') && loginForm.controls['password']?.touched">
+                    Password is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
+                    Please enter a valid password 
+                  </mat-error>
               </div>
 
               <div class="button">

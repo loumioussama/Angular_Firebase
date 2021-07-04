@@ -10,61 +10,87 @@
         <div class="center">
           <form [formGroup]="signUpForm!" (ngSubmit)="onSignup()">
 
-          <h1>Create your account</h1>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna
-          </div>
-          <div class="row align-items-center">
-
-            <div class="input">
-              <label for="exampleFormControlInput1" class="form-label">Name</label>
-              <input type="text" class="form-control" formControlName="name" >
-            </div>
-
-            <div class="input">
-              <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
-              <input type="text" class="form-control" formControlName="lastname">
-            </div>
-          </div>
-          <div class="row align-items-center">
-
+            <h1>Create your account</h1>
             <div>
-              <label for="exampleFormControlInput1" class="form-label">Email</label>
-              <input type="text" class="form-control" formControlName="email" >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+              et dolore magna
             </div>
+            <div class="row align-items-center">
 
-          
-          </div>
-          <div class="row align-items-center">
+              <div class="input">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input type="text" class="form-control" formControlName="name" required>
+                <mat-error *ngIf="name.hasError('required') && signUpForm.controls['name']?.touched">
+                  Name is <strong>required</strong>
+                </mat-error>
 
-            <div class="input">
-              <label for="exampleFormControlInput1" class="form-label">Password</label>
-              <input type="password" class="form-control" formControlName="password" >
+              </div>
+
+              <div class="input">
+                <label for="exampleFormControlTextarea1" class="form-label">Last Name</label>
+                <input type="text" class="form-control" formControlName="lastname" required>
+                <mat-error *ngIf="lastname.hasError('required') && signUpForm.controls['lastname']?.touched">
+                  Name is <strong>required</strong>
+                </mat-error>
+              </div>
             </div>
-            <div class="input">
-              <label for="exampleFormControlTextarea1" class="form-label">Confirm Password</label>
-              <input type="text"  class="form-control" formControlName="confirmPassword">
+            <div class="row align-items-center">
+
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="text" class="form-control" formControlName="email" required>
+                <mat-error *ngIf="email.hasError('required') && signUpForm.controls['email']?.touched">
+                  Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+              </div>
+
+
             </div>
+            <div class="row align-items-center">
+
+              <div class="input">
+                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="password" minlength="8" required>
+                <mat-error *ngIf="password.hasError('required') && signUpForm.controls['password']?.touched">
+                  Password is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
+                  Please enter a valid password
+                </mat-error>
+              </div>
+              <div class="input">
+                <label for="exampleFormControlTextarea1" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" formControlName="confirmPassword" minlength="8" required>
+                <mat-error
+                  *ngIf="confirmPassword.hasError('required') && signUpForm.controls['confirmPassword']?.touched">
+                  confirmPassword is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="confirmPassword.hasError('minlength') && !confirmPassword.hasError('required')">
+                  Please enter a valid password
+                </mat-error>
+              </div>
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">By creating an account, you agree to our </label><br>
-                <a href="">Term and conditions</a>
-              </div>
-              <div class="row align-items-center">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">By creating an account, you agree to our </label><br>
+              <a href="">Term and conditions</a>
+            </div>
+            <div class="row align-items-center">
               <div>
                 <a style="color: #17aebe;" [routerLink]="['/']">Sign in instead</a>
 
               </div>
 
-                <div class="button">
-                    <button type="button"   (click)="onSignup()" class="btn">Next</button>
-    
-                  </div>
+              <div class="button">
+                <button type="button" (click)="onSignup()" class="btn">Next</button>
+
+              </div>
             </div>
 
-       </form>
+          </form>
         </div>
       </div>
     </div>

@@ -20,31 +20,43 @@ export class SignupComponent implements OnInit {
 
   initSignUpForm(): any {
     this.signUpForm = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      lastname: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [
+      name: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(8),
       ]),
-      confirmPassword: new FormControl(null, [
+      confirmPassword: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(8),
       ]),
     });
   }
+  get name(): any {
+    return this.signUpForm?.get('name');
+  }
+  get lastname(): any {
+    return this.signUpForm?.get('lastname');
+  }
+  get email(): any {
+    return this.signUpForm?.get('email');
+  }
+  get password(): any {
+    return this.signUpForm?.get('password');
+  }
+  get confirmPassword(): any {
+    return this.signUpForm?.get('confirmPassword');
+  }
   
   async onSignup(){
-    await this.firebaseService.signup(this.signUpForm?.get('email').value,this.signUpForm?.get('email').value)
-    if(this.firebaseService.isLoggedIn)
-    this.isSignedIn = true
+    if (this.signUpForm?.valid) {
+
+    await this.firebaseService.signup(this.signUpForm?.get('email').value,this.signUpForm?.get('password').value)
     this.router.navigate(['/']);
 
   }
-  async onSignin(email:string,password:string){
-    await this.firebaseService.signin(email,password)
-    if(this.firebaseService.isLoggedIn)
-    this.isSignedIn = true
-  }
+}
+ 
 
 }

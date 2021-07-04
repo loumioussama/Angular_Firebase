@@ -30,8 +30,8 @@ export class FirebaseService {
   async signup(email: string, password: string) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(res => {
-        this.isLoggedIn = true
-        localStorage.setItem('user', JSON.stringify(res.user))
+       console.log("Signup successful", res);
+       
       })
       .catch(err => {
         console.log(err);
@@ -42,6 +42,7 @@ export class FirebaseService {
     await this.firebaseAuth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider()).then(
       res => {
         this.isLoggedIn = true
+        localStorage.setItem('user', JSON.stringify(res.user))
         console.log('login successful',res);
 
       }

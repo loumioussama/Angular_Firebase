@@ -11,6 +11,7 @@ import { FirebaseService} from './services/firebase.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { HomeComponent } from './home/home.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatInputModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAHgX-Re6FYWsVkPTRulppp67ya6E6K2pY",
       authDomain: "angular-fire-66155.firebaseapp.com",

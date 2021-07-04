@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
   }
   initLoginForm(): any {
     this.loginForm = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(8),
       ]),
     });
   }
@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   async onSignin() {
-    await this.firebaseService.signin(this.loginForm?.get('email').value, this.loginForm?.get('password').value)
+    if (this.loginForm?.valid) {
+        await this.firebaseService.signin(this.loginForm?.get('email').value, this.loginForm?.get('password').value)
     if (this.firebaseService.isLoggedIn) {
       this.isSignedIn = true
       this.router.navigate(['/home']);
@@ -46,6 +47,8 @@ export class LoginComponent implements OnInit {
       console.log("error");
 
     }
+    }
+   
 
   }
   async login() {
